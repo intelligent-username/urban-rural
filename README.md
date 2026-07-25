@@ -1,0 +1,33 @@
+# Urban or Rural
+
+In this Data Analysis Project, I take in geospatial data and determine whether a given location is urban or rural.
+
+## Sources
+
+Check the `data/` folder for details on how to download, import, clean, and use the datasets used in this analysis.
+
+### GADM Dataset
+
+Downloaded [version 4.1](https://gadm.org/download_world.html) as a single database.
+
+This dataset contains strictly geographical data.
+
+**GADM.** *GADM Database of Global Administrative Areas, Version 4.1*. 2022. https://gadm.org. Accessed July 24, 2026.
+
+<!-- ```bibtex
+@misc{gadm41,
+  author       = {{GADM}},
+  title        = {GADM Database of Global Administrative Areas, Version 4.1},
+  year         = {2022},
+  howpublished = {\url{https://gadm.org}},
+  note         = {Accessed: 2026-07-24}
+}
+``` -->
+
+### GADM Labelling
+
+Schiavina M., Melchiorri M., Freire S. (2023):
+GHS-DUC R2023A - GHS Degree of Urbanisation Classification, application of the Degree of Urbanisation methodology (stage II) to GADM 4.1 layer, multitemporal (1975-2030).European Commission, Joint Research Centre (JRC)
+PID: http://data.europa.eu/89h/dc0eb21d-472c-4f5a-8846-823c50836305, doi: https://10.2905/DC0EB21D-472C-4F5A-8846-823C50836305
+
+
