@@ -3,3 +3,4 @@ fiona
 pandas
 numpy
 matplotlib
+ipykernel

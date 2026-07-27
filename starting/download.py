@@ -4,6 +4,7 @@ Downloads and extracts the required GADM and GHS-DUC databases into the data/ di
 
 import os
 import sys
+import shutil
 import zipfile
 import urllib.request
 from pathlib import Path
@@ -77,6 +78,14 @@ def download_and_extract():
                 print(f"Failed to extract {item['filename']}: {e}")
         else:
             print(f"Directory {extract_path.name}/ already exists. Skipping extraction.")
+
+    # Copy level2 CSV to data/ root directory if extracted
+    csv_src = DATA_DIR / "GHS_DUC_MT_GLOBE_R2023A_V2_0" / "GHS_DUC_GLOBE_R2023A_V2_0_GADM41_2025_level2.csv"
+    csv_dst = DATA_DIR / "GHS_DUC_GLOBE_R2023A_V2_0_GADM41_2025_level2.csv"
+    if csv_src.exists() and not csv_dst.exists():
+        print(f"\nCopying {csv_src.name} to {DATA_DIR.name}/ ...")
+        shutil.copy2(csv_src, csv_dst)
+        print("Copy complete.")
 
 
 if __name__ == "__main__":

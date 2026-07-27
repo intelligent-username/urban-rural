@@ -54,7 +54,7 @@ To run this project locally, set it up as follows. I use uv, so that's the defau
 
 ```bash
 # Create a virtual environment
-uv venv
+uv ur
 
 ```
 
@@ -62,13 +62,13 @@ uv venv
 
 ```bash
 # On macOS/Linux:
-source .venv/bin/activate
+source ur/bin/activate
 
 # On Windows (PowerShell):
-.venv\Scripts\activate
+ur\Scripts\activate
 
 # On Windows (Command Prompt):
-.venv\Scripts\activate.bat
+ur\Scripts\activate.bat
 
 ```
 
@@ -77,3 +77,20 @@ source .venv/bin/activate
 ```bash
 uv pip install -r requirements.txt
 ```
+
+4. Download datasets
+
+```bash
+cd starting
+python starting/download.py
+```
+
+5. Merge datasets
+
+```bash
+python starting/merge.py
+```
+
+Now you're ready to run the `ipynb` files for the analysis.
+
+Be sure to have an IPython kernel set up for your IDE (whether it be VSCode or otherwise) and use the kernel created by your package manager as the one running the notebook.
