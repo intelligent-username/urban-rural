@@ -1,6 +1,6 @@
 """
-Exploring the details of the GADM database just to give me an idea of what's in there
-I downloaded it locally and placed it in the data/ folder.
+Exploring the details of the GADM database
+Required: Download it locally and placed it in the data/ folder.
 Writes summary outputs to ../brainstorm/
 """
 
