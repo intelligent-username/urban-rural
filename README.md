@@ -2,14 +2,46 @@
 
 In this Data Analysis Project, I take in geospatial data and determine whether a given location is urban or rural.
 
+Public data is used to train the model. The final model outputs it's prediction as either "Urban" or "Rural".
+
 ## Outline
 
 - [Urban or Rural](#urban-or-rural)
   - [Outline](#outline)
+  - [Math](#math)
+  - [Implementation](#implementation)
   - [Sources](#sources)
     - [GADM Dataset](#gadm-dataset)
     - [GADM Labelling](#gadm-labelling)
   - [Setup](#setup)
+
+## Math
+
+We're minimizing Cross-Entropy loss to train the model, defined as:
+
+$$
+\text{Loss} = -\frac{1}{N} \sum_{i=1}^{N} \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right]
+$$
+
+In the binary case, this is equivalent to:
+
+$$
+\text{Loss} = -\frac{1}{N} \sum_{i=1}^{N} \sum_{k=1}^{2} y_{i,k} \log(\hat{y}_{i,k})
+$$
+
+where $\hat{y}_i = \sigma(w^T x_i + b)$ is the sigmoid prediction.
+
+Then, to make the predictions, we're using the optimized weights to plug into the sigmoid function:
+
+$$
+\sigma(z) = \frac{1}{1 + e^{-z}}
+$$
+
+## Implementation
+
+The model is implemented in Python using NumPy. See the `analysis` folder for implementation details.
+
+It is then trained and used for the analysis, see the jupyter notebook for the results.
 
 ## Sources
 
