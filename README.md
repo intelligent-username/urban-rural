@@ -4,11 +4,12 @@ In this Data Analysis Project, I take in geospatial data and determine whether a
 
 ## Outline
 
-- [Project Structure](#project-structure)
-- [Sources](#sources)
-  - [GADM Dataset](#gadm-dataset)
-  - [GADM Labelling](#gadm-labelling)
-- [Setup](#setup)
+- [Urban or Rural](#urban-or-rural)
+  - [Outline](#outline)
+  - [Sources](#sources)
+    - [GADM Dataset](#gadm-dataset)
+    - [GADM Labelling](#gadm-labelling)
+  - [Setup](#setup)
 
 ## Sources
 
@@ -54,8 +55,7 @@ To run this project locally, set it up as follows. I use uv, so that's the defau
 
 ```bash
 # Create a virtual environment
-uv ur
-
+uv venv ur
 ```
 
 2. Activate the virtual environment
