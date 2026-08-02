@@ -2,10 +2,6 @@
 The Logistic Regression Model Design
 """
 
-# Potential TODO:
-#    1) Implement dynamic learning rate for effiiciency
-#    2) Occasional loss calculation in place of every step
-
 from typing import Optional, List, Tuple
 import numpy as np
 from numpy.typing import NDArray
@@ -16,7 +12,6 @@ class LogisticRegression:
     """
     Logistic regression model.
     """
-
 
     # ##################################
     # Actual model definition (params)
@@ -58,10 +53,10 @@ class LogisticRegression:
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-    def __init__(self, weights: Optional[NDArray[np.float64]] = None, intercept: float = 0.0,
-                n: int = 1, p: int = 1,
-                steps_limit: int = 10000, tolerance: int = 5, ld: float = 0.001,
-                threshold: float = 0.5):
+    def __init__(self, weights: Optional[NDArray[np.float64]] = None, 
+                 intercept: float = 0.0, n: int = 1, p: int = 1,
+                 steps_limit: int = 10000, tolerance: int = 5, ld: float = 0.001,
+                 threshold: float = 0.5):
         """
         Initializes the model with default conditions
         n stands for the number of data points
@@ -90,35 +85,47 @@ class LogisticRegression:
         self.threshold = threshold
 
 
-    def train(self):
+    def train(self, X, y):
         """
         Train the model using gradient descent.
         Calls gradient descent function iteratively
         """
-        while self.check_conditions(self):
-            self.gradient_descent()
+        assert X.shape[0] == y.shape[0], "Number of samples in X and y must match"
+        assert X.shape[0] == self.n, f"self.n={self.n} does not match number of samples in X={X.shape[0]}"
+
+        while self.check_conditions():
+            self.gradient_descent(X, y)
             self.step += 1
             if self.currLoss < self.prevLoss:
                 self.divs = 0
             else:
                 self.divs += 1
+            self.prevLoss = self.currLoss
+            self.currLoss = self.loss_function(self.predict_prob(X), y)
              
-
 
     def predict(self, X) -> bool:
         """
         Predict whether or not X should be assigned a positive class.
         """
+        return self.predict_prob(X) > self.threshold
+
+
+    def predict_prob(self, X) -> bool:
+        """
+        Return the probability of X being assigned a positive class.
+        """
         z = X @ self.weights + self.intercept
-        return sigmoid(z) > self.threshold
+        return self.sigmoid(z)
+
 
         
-    def gradient_descent(self):
+    def gradient_descent(self, X: NDArray[np.float64], y: NDArray[np.float64]):
         """
         Takes in the current state of the model and updates the weights and intercept
         using the gradient (just a single step).
         """
-        w, b = self.loss_gradient(self.X, self.predict(self.X), self.y)
+        w, b = self.loss_gradient(X, self.predict_prob(X), y)
         self.weights -= self.lr * w
         self.intercept -= self.lr * b
         
