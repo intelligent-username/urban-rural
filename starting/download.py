@@ -1,5 +1,5 @@
 """
-Downloads and extracts the required GADM and GHS-DUC databases into the data/ directory.
+Downloads and extracts the required GADM and GHS-DUC databases into the data/ folder.
 """
 
 import os

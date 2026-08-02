@@ -6,8 +6,6 @@ from typing import Optional, List, Tuple
 import numpy as np
 from numpy.typing import NDArray
 
-from gd import gradient_descent, loss_function, sigmoid
-
 class LogisticRegression:
     """
     Logistic regression model.
