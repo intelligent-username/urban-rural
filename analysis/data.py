@@ -45,7 +45,11 @@ def standardize_data(train: pd.DataFrame, val: pd.DataFrame, test: pd.DataFrame)
     mu = train.mean(numeric_only=True)
     sigma = train.std(numeric_only=True)
 
+    train[mu.index] = (train[mu.index] - mu) / sigma
+    val[mu.index] = (val[mu.index] - mu) / sigma
+    test[mu.index] = (test[mu.index] - mu) / sigma
 
+    return (train, val, test)
 
 
 def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
